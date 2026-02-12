@@ -1,2 +1,31 @@
-<h1>Schedules#index</h1>
-<p>Find me in app/views/schedules/index.html.erb</p>
+<h1>スケジュール管理アプリ</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>メモ</th>
+      <th>作成</th>
+      <th>更新</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.title %></td>
+        <td><%= schedule.start_date %></td>
+        <td><%= schedule.end_date %></td>
+        <td><%= schedule.all_day %></td>
+        <td><%= schedule.memo %></td>
+        <td><%= schedule.created_at %></td>
+        <td><%= schedule.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
