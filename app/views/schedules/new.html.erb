@@ -1,0 +1,11 @@
+<h3>新しいスケジュール作成</h3>
+
+<%= form_with model: @schedule do |f| %>
+  <p>タイトル<span>*</span> <%= f.text_field :title %></p>
+  <p>開始日<span>*</span> <%= f.text_field :start_date %></p>
+  <p>終了日<span>*</span> <%= f.text_field :end_date %></p>
+  <p><%= f.check_box :all_day %>終日の場合はチェックします。</p>
+  <p>メモ <%= f.text_area :memo %></p>
+  <p><%= f.submit "登録" %></p>
+  <p><%= link_to "キャンセル", schedules_path %></p>
+<% end %>
