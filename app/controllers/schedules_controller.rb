@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.all
   end
 
-  def new 
+  def new
     @schedule = Schedule.new
   end
 
@@ -29,5 +29,4 @@ class SchedulesController < ApplicationController
       :memo
     )
   end
-
 end
