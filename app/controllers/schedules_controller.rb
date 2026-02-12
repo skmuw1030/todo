@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     if @schedule.save
-      flash[ :notice ] = "登録しました"
+      flash[:notice] = "登録しました"
       redirect_to schedules_path
     else
       Rails.logger.debug @schedule.errors.full_messages
@@ -21,7 +21,7 @@ class SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require( :schedule ).permit(
+    params.require(:schedule).permit(
       :title,
       :start_date,
       :end_date,
