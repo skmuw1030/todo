@@ -35,6 +35,7 @@
     <th>更新日時：</th>
     <td><%= l @schedule.updated_at %></td>
   </tr>
+</table>
 
   <div>
     <ul>
@@ -44,8 +45,9 @@
       <li>
         <%= link_to "編集", edit_schedule_path(@schedule) %>
       </li>
+      <li>
+        <%= link_to "削除", schedule_path(@schedule), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+      </li>
     </ul>
   </div>
 
-
-</table>
