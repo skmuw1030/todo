@@ -13,10 +13,28 @@ class SchedulesController < ApplicationController
       flash[:notice] = "登録しました"
       redirect_to schedules_path
     else
-      Rails.logger.debug @schedule.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @schedule = Schedule.find(params[:id])
+  end
+
+  def edit
+    @schedule = Schedule.find(params[:id])
+  end
+
+  def update
+    @schedule = Schedule.find(params[:id])
+    if @schedule.update(schedule_params)
+      flash[:notice] = "スケジュールを更新しました"
+      redirect_to schedules_path(@schedule)
+    else
+      render "edit", status: :unprocessable_entity
+    end
+  end
+
 
   private
 
