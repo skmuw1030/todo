@@ -22,8 +22,8 @@
       <tr>
         <td><%= schedule.id %></td>
         <td><%= schedule.title %></td>
-        <td><%= schedule.start_date.to_fs(:date_jp)%></td>
-        <td><%= schedule.end_date.to_fs(:date_jp) %></td>
+        <td><%= schedule.start_date.strftime("%Y/%m/%d") %></td>
+        <td><%= schedule.end_date.strftime("%Y/%m/%d") %></td>
         <td>
           <% if schedule.all_day %>
             <%= "◯" %>
