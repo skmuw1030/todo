@@ -13,10 +13,7 @@
       <th>開始日</th>
       <th>終了日</th>
       <th>終日</th>
-      <th>メモ</th>
-      <th>作成</th>
       <th>更新</th>
-      <th>参照</th>
     </tr>
   </thead>
 
@@ -25,13 +22,15 @@
       <tr>
         <td><%= schedule.id %></td>
         <td><%= schedule.title %></td>
-        <td><%= schedule.start_date %></td>
-        <td><%= schedule.end_date %></td>
-        <td><%= schedule.all_day %></td>
-        <td><%= schedule.memo %></td>
-        <td><%= schedule.created_at %></td>
-        <td><%= schedule.updated_at %></td>
-        <td><%= link_to "参照", schedule_path(schedule) %></td>
+        <td><%= schedule.start_date.to_fs(:date_jp)%></td>
+        <td><%= schedule.end_date.to_fs(:date_jp) %></td>
+        <td>
+          <% if schedule.all_day %>
+            <%= "◯" %>
+          <% end %>
+        </td>
+        <td><%= schedule.updated_at.to_fs(:datetime_jp)%></td>
+        <td><%= link_to "詳細", schedule_path(schedule) %></td>
         <td><%= link_to "編集", edit_schedule_path(schedule) %></td>
         <td><%= link_to "削除", schedule_path(schedule), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></td>
       </tr>

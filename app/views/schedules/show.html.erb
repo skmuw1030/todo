@@ -18,22 +18,16 @@
 
   <tr>
     <th>終日</th>
-    <td><%= @schedule.all_day ? "◯" : "×" %></td>
+    <td>
+      <% if @schedule.all_day %>
+        <%= "◯" %>
+      <% end %>
+    </td>
   </tr>
 
   <tr>
     <th>メモ</th>
     <td><%= @schedule.memo %></td>
-  </tr>
-
-  <tr>
-    <th>作成日時：</th>
-    <td><%= l @schedule.created_at %></td>
-  </tr>
-
-  <tr>
-    <th>更新日時：</th>
-    <td><%= l @schedule.updated_at %></td>
   </tr>
 </table>
 
@@ -44,9 +38,6 @@
       </li>
       <li>
         <%= link_to "編集", edit_schedule_path(@schedule) %>
-      </li>
-      <li>
-        <%= link_to "削除", schedule_path(@schedule), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
       </li>
     </ul>
   </div>
