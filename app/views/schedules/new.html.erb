@@ -1,5 +1,7 @@
 <h3>新しいスケジュール作成</h3>
 
+<%= render "shared/error", obj: @schedule %>
+
 <%= form_with model: @schedule do |f| %>
   <p>タイトル<span>*</span> <%= f.text_field :title %></p>
   <p>開始日<span>*</span> <%= f.text_field :start_date %></p>

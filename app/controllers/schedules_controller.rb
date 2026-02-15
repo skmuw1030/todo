@@ -13,7 +13,7 @@ class SchedulesController < ApplicationController
       flash[:notice] = "登録しました"
       redirect_to schedules_path
     else
-      render :new, status: :unprocessable_entity
+      render :"new", status: :unprocessable_entity
     end
   end
 
