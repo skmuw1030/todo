@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   def index
     @schedules = Schedule.all
+    @schedule_count = Schedule.count
   end
 
   def new
