@@ -14,6 +14,7 @@ class SchedulesController < ApplicationController
       flash[:notice] = "登録しました"
       redirect_to schedules_path
     else
+      flash.now[:alert] = "登録に失敗しました"
       render :"new", status: :unprocessable_entity
     end
   end
@@ -32,6 +33,7 @@ class SchedulesController < ApplicationController
       flash[:notice] = "スケジュールを更新しました"
       redirect_to schedules_path(@schedule)
     else
+      flash.now[:alert] = "更新に失敗しました"
       render "edit", status: :unprocessable_entity
     end
   end
