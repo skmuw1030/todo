@@ -1,40 +1,58 @@
-<h1>スケジュール管理アプリ</h1>
+<div class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
 
-<%= link_to "新規登録", new_schedule_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>タイトル</th>
-      <th>開始日</th>
-      <th>終了日</th>
-      <th>終日</th>
-      <th>更新</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @schedules.each do |schedule| %>
-      <tr>
-        <td><%= schedule.id %></td>
-        <td><%= schedule.title %></td>
-        <td><%= schedule.start_date.strftime("%Y/%m/%d") %></td>
-        <td><%= schedule.end_date.strftime("%Y/%m/%d") %></td>
-        <td>
-          <% if schedule.all_day %>
-            <%= "◯" %>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fs-5 m-0 fw-bold">予定一覧</h3>
+          <%= link_to new_schedule_path, class:"btn btn-primary px-3 py-2 rounded-3 fw-semibold d-flex align-items-center gap-2" do %>
+            <i class="bi bi-pencil-fill"></i>
+            新規登録
           <% end %>
-        </td>
-        <td><%= schedule.updated_at.to_fs(:datetime_jp)%></td>
-        <td><%= link_to "詳細", schedule_path(schedule) %></td>
-        <td><%= link_to "編集", edit_schedule_path(schedule) %></td>
-        <td><%= link_to "削除", schedule_path(schedule), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+ 
+      
+        <table class="table align-middle table-borderless">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>タイトル</th>
+              <th>開始日</th>
+              <th>終了日</th>
+              <th>終日</th>
+              <th>更新</th>
+            </tr>
+          </thead>
 
-<p>予定の合計数：<%= @schedule_count %>件</p>
-<p>本日の日付：<%= Time.zone.today.strftime("%Y/%m/%d")%></p>
+          <tbody>
+            <% @schedules.each do |schedule| %>
+              <tr>
+                <td><%= schedule.id %></td>
+                <td><%= schedule.title %></td>
+                <td><%= schedule.start_date.strftime("%Y/%m/%d") %></td>
+                <td><%= schedule.end_date.strftime("%Y/%m/%d") %></td>
+                <td>
+                  <% if schedule.all_day %>
+                    <%= "◯" %>
+                  <% end %>
+                </td>
+                <td><%= schedule.updated_at.to_fs(:datetime_jp)%></td>
+                <td><%= link_to "詳細", schedule_path(schedule),class:"text-secondary text-decoration-none link-dark" %></td>
+                <td><%= link_to "編集", edit_schedule_path(schedule),class:"text-secondary text-decoration-none link-dark" %></td>
+                <td><%= link_to "削除", schedule_path(schedule), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },class:"text-danger text-decoration-none link-danger"%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+
+        <div class="mt-4">
+          <p>予定の合計数：<span class="fw-bold fs-5 me-1"><%= @schedule_count %></span>件</p>
+          <p class="text-body-tertiary">本日の日付：<%= Time.zone.today.strftime("%Y/%m/%d")%></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 

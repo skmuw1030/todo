@@ -1,44 +1,53 @@
-<h1>スケジュール詳細</h1>
+<div class="container d-flex justify-content-center mt-5">
+  <div class="row justify-content-center w-100">
+    <div class="col-lg-6">
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <td><%= @schedule.title %></td>
-  </tr>
+      <h1 class="fw-bold fs-6 text-start mb-4">スケジュール詳細</h1>
 
-  <tr>
-    <th>開始日</th>
-    <td><%= @schedule.start_date %></td>
-  </tr>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+            <%= link_to schedules_path , class:"text-secondary text-decoration-none link-dark d-flex align-items-center gap-2" do %>
+              <i class="bi bi-arrow-left"></i>スケジュール一覧に戻る
+            <% end %>
+            <%= link_to edit_schedule_path(@schedule), class:"btn btn-primary-subtle text-decoration-none text-primary d-flex align-items-center gap-2 px-3 py-2 rounded-3 fw-bold" do %>
+              <i class="bi bi-pencil"></i>編集
+            <% end %>
+      </div>
 
-  <tr>
-    <th>終了日</th>
-    <td><%= @schedule.end_date %></td>
-  </tr>
+      <div class="card">
+        <div class="card-body p-4">
 
-  <tr>
-    <th>終日</th>
-    <td>
-      <% if @schedule.all_day %>
-        <%= "◯" %>
-      <% end %>
-    </td>
-  </tr>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted fw-semibold">タイトル</div>
+            <div class="col-sm-8"><%= @schedule.title %></div>
+          </div>
 
-  <tr>
-    <th>メモ</th>
-    <td><%= @schedule.memo %></td>
-  </tr>
-</table>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted fw-semibold">開始日</div>
+            <div class="col-sm-8"><%= @schedule.start_date %></div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted fw-semibold">終了日</div>
+            <div class="col-sm-8"><%= @schedule.end_date %></div>
+          </div>
 
-  <div>
-    <ul>
-      <li>
-        <%= link_to "スケジュール一覧に戻る", :schedules %>
-      </li>
-      <li>
-        <%= link_to "編集", edit_schedule_path(@schedule) %>
-      </li>
-    </ul>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted fw-semibold">終日</div>
+            <div class="col-sm-8">
+              <% if @schedule.all_day %>
+                <%= "◯" %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted fw-semibold">メモ</div>
+            <div class="col-sm-8"><%= @schedule.memo %></div>
+          </div>
+
+        </div>
+      </div>
+  
+    </div>
   </div>
-
+</div>

@@ -1,43 +1,66 @@
-<h3>新しいスケジュール作成</h3>
+<div class="container d-flex justify-content-center mt-5">
+  <div class="row justify-content-center w-100">
+    <div class="col-lg-6">
+      
+      <h3 class="fw-bold fs-6 text-start mb-4">新しいスケジュール作成</h3>
 
-<%= form_with model: @schedule do |f| %>
-  <div>
-    <p>タイトル<span>*</span></p>
-    <%= f.text_field :title %>
-      <% if @schedule.errors[:title].any? %>
-        <div class="error">
-          <%= @schedule.errors.full_messages_for(:title).first %>
+      <%= form_with model: @schedule do |f| %>
+        <div class="mb-4">
+          <p class="mb-2 fw-bold">タイトル<span class="text-danger">*</span></p>
+          <%= f.text_field :title, class:"form-control w-100 mx-auto d-block rounded-1" ,placeholder: "タイトル" %>
+          <% if @schedule.errors[:title].any? %>
+            <div class="text-danger">
+              <%= @schedule.errors.full_messages_for(:title).first %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-  </div>
-  <div>
-    <p>開始日<span>*</span></p>
-    <%= f.date_field :start_date %>
-      <% if @schedule.errors[:start_date].any? %>
-        <div class="error">
-          <%= @schedule.errors.full_messages_for(:start_date).first %>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-2 fw-bold">開始日<span class="text-danger">*</span></p>
+            <%= f.date_field :start_date, class:"form-control" %>
+            <% if @schedule.errors[:start_date].any? %>
+              <div class="text-danger mt-1">
+                <%= @schedule.errors.full_messages_for(:start_date).first %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-2 fw-bold">終了日<span class="text-danger">*</span></p>
+            <%= f.date_field :end_date, class:"form-control"%>
+            <% if @schedule.errors[:end_date].any? %>
+              <div class="text-danger mt-1">
+                <%= @schedule.errors.full_messages_for(:end_date).first %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
-  </div>
-  <div>
-    <p>終了日<span>*</span></p>
-    <%= f.date_field :end_date %>
-      <% if @schedule.errors[:end_date].any? %>
-        <div class="error">
-          <%= @schedule.errors.full_messages_for(:end_date).first %>
+
+        <div class="form-check mt-3">
+          <%= f.check_box :all_day,class:"form-check-input form-check-input-lg me-2" %>終日の場合はチェックします。
         </div>
-      <% end %>
-  </div>
-  <p><%= f.check_box :all_day %>終日の場合はチェックします。</p>
-  <div>
-    <p>メモ</p>
-    <%= f.text_area :memo %>
-      <% if @schedule.errors[:memo].any? %>
-        <div class="error">
-          <%= @schedule.errors.full_messages_for(:memo).first %>
+
+        <div class="mb-4 mt-4">
+          <p class="fw-bold mb-2">メモ</p>
+          <%= f.text_area :memo,class:"form-control",placeholder:"メモを入力する",rows: 8 %>
+          <% if @schedule.errors[:memo].any? %>
+            <div class="text-danger mt-1">
+              <%= @schedule.errors.full_messages_for(:memo).first %>
+            </div>
+          <% end %>
         </div>
+
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <%= link_to schedules_path, class: "btn btn-outline-secondary px-3 py-2" do %>
+            <i class="bi bi-arrow-bar-left"></i> キャンセル
+          <% end %>
+          <%= button_tag type: "submit", class:"btn btn-primary d-flex align-items-center gap-2 px-3 py-2 rounded-3" do %>
+            <i class="bi bi-save"></i> 登録
+          <% end %>
+        </div>
+
       <% end %>
+
+    </div>
   </div>
-  <p><%= f.submit "登録" %></p>
-  <p><%= link_to "キャンセル", schedules_path %></p>
-<% end %>
+</div>
