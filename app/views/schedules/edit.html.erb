@@ -7,7 +7,11 @@
       <%= form_with model: @schedule do |f| %>
         <div class="mb-4">
           <p class="mb-2 fw-bold">タイトル<span class="text-danger">*</span></p>
-          <%= f.text_field :title, class:"form-control w-100 mx-auto d-block rounded-1" ,placeholder: "タイトル" %>
+          <%= f.text_field :title, maxlength:20, class:"form-control w-100 mx-auto d-block rounded-1" ,placeholder: "タイトル",id:"title-field" %>
+          <div class="text-end mt-1">
+            <small id="title-count">0 / 20</small>
+          </div>
+
           <% if @schedule.errors[:title].any? %>
             <div class="text-danger">
               <%= @schedule.errors.full_messages_for(:title).first %>
@@ -42,7 +46,11 @@
 
         <div class="mb-4 mt-4">
           <p class="fw-bold mb-2">メモ</p>
-          <%= f.text_area :memo,class:"form-control",placeholder:"メモを入力する",rows: 8 %>
+          <%= f.text_area :memo, maxlength: 500,class:"form-control",placeholder:"メモを入力する",rows: 8,id:"memo-field" %>
+          <div class="text-end mt-1">
+            <small id="memo-count">0 / 500</small>
+          </div>
+        
           <% if @schedule.errors[:memo].any? %>
             <div class="text-danger mt-1">
               <%= @schedule.errors.full_messages_for(:memo).first %>
@@ -55,7 +63,7 @@
             <i class="bi bi-arrow-bar-left"></i> キャンセル
           <% end %>
           <%= button_tag type: "submit", class:"btn btn-primary d-flex align-items-center gap-2 px-3 py-2 rounded-3" do %>
-            <i class="bi bi-save"></i> 更新
+            <i class="bi bi-check-circle"></i>更新
           <% end %>
         </div>
 

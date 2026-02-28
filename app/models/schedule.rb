@@ -1,8 +1,12 @@
 class Schedule < ApplicationRecord
-  validates :title, presence: true, length: { maximum: 20 }
+  TITLE_MAX_LENGTH =20
+  MEMO_MAX_LENGTH  =500
+
+
+  validates :title, presence: true, length: { maximum: TITLE_MAX_LENGTH  }
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :memo, length: { maximum: 500 }
+  validates :memo, length: { maximum: MEMO_MAX_LENGTH }
 
   validate :date_check
 
