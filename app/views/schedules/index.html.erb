@@ -1,0 +1,104 @@
+<div class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fs-5 m-0 fw-bold">予定一覧</h3>
+          <%= link_to new_schedule_path, class:"btn btn-primary px-3 py-2 rounded-1 fw-semibold d-flex align-items-center gap-2" do %>
+            <i class="bi bi-calendar-plus"></i>
+            新規登録
+          <% end %>
+        </div>
+        
+        <table class="table table-borderless shadow align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>タイトル</th>
+              <th>開始日</th>
+              <th>終了日</th>
+              <th>終日</th>
+              <th>更新日時</th>
+              <th>詳細</th>
+              <th>編集</th>
+              <th>削除</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @schedules.each do |schedule| %>
+              <tr>
+                <td><%= schedule.id %></td>
+                <td class="fw-semibold"><%= schedule.title %></td>
+                <td><%= schedule.start_date.strftime("%Y/%m/%d") %></td>
+                <td><%= schedule.end_date.strftime("%Y/%m/%d") %></td>
+                <td class="text-center">
+                  <% if schedule.all_day %>
+                    <%= "◯" %>
+                  <% end %>
+                </td>
+                <td><%= schedule.updated_at.to_fs(:datetime_jp)%></td>
+                <td>
+                  <%= link_to schedule_path(schedule),class:"text-secondary text-decoration-none link-dark" do %>
+                    <i class="bi bi-zoom-in"></i>
+                    詳細
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_schedule_path(schedule),class:"text-secondary text-decoration-none link-dark" do %>
+                    <i class="bi bi-pencil"></i>
+                    編集
+                  <% end %>  
+                </td>
+                <td>
+                  <%= link_to "#", data: { 
+                    bs_toggle: "modal", bs_target: "#deleteModal-#{schedule.id}" },class:"text-danger text-decoration-none link-danger" do %>
+                    <i class="bi bi-trash"></i>
+                    削除 
+                  <% end %>
+                </td> 
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <% @schedules.each do |schedule| %>
+          <div class="modal fade" id="deleteModal-<%= schedule.id %>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                
+
+                  <div class="modal-header">
+                   <h5 class="modal-title text-danger">削除確認</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    「<%= schedule.title %>」を本当に削除しますか？
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-cecondary" data-bs-dismiss="modal">
+                    キャンセル
+                    </button>
+                    
+                    <%= link_to "削除する", schedule_path(schedule),data:{ turbo_method: :delete },class:"btn btn-danger" %>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+        <% end %>
+      
+
+        <div class="mt-4">
+          <p>予定の合計数：<span class="fw-bold fs-5 me-1"><%= @schedule_count %></span>件</p>
+          <p class="text-body-tertiary">本日の日付：<%= Time.zone.today.strftime("%Y/%m/%d")%></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
